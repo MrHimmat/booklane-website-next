@@ -24,13 +24,13 @@ export default function Header() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          {/* Side-drawer mobile menu from top with extraordinary animation */}
+          {/* Simple mobile menu with fade-down animation */}
           {menuOpen && (
             <>
               {/* Overlay with fade-in */}
-              <div className="fixed inset-0 z-40 bg-black/50 transition-opacity duration-500 ease-out animate-fade-in" onClick={() => setMenuOpen(false)} />
-              {/* Full-screen Drawer with bounce, blur, and glow, sliding from top */}
-              <nav className="fixed top-0 left-0 z-50 w-full h-full bg-gray-900/90 shadow-2xl flex flex-col items-center justify-center animate-drawer-bounce-top backdrop-blur-xl ring-2 ring-blue-400/30 ring-inset sm:hidden">
+              <div className="fixed inset-0 z-40 bg-black/40 transition-opacity duration-200 animate-fade-in" onClick={() => setMenuOpen(false)} />
+              {/* Slide-down and fade-in menu */}
+              <nav className="fixed top-0 left-0 z-50 w-full h-full bg-gray-900/95 flex flex-col items-center justify-center sm:hidden animate-slide-down">
                 <button
                   className="absolute top-6 right-6 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   onClick={() => setMenuOpen(false)}
@@ -41,10 +41,10 @@ export default function Header() {
                   </svg>
                 </button>
                 <ul className="flex flex-col gap-8 font-extrabold text-2xl items-center justify-center h-full w-full">
-                  <li><Link href="/"  className="font-black transition-all duration-500 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:bg-clip-text hover:text-transparent hover:scale-105">Home</Link></li>
-                  <li><a href="#about" onClick={(e) => { e.preventDefault(); setMenuOpen(false); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }} className="font-black transition-all duration-500 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:bg-clip-text hover:text-transparent hover:scale-105">About</a></li>
-                  <li><a href="https://play.google.com/store/apps/details?id=com.cloud_regex.book_lane&hl=en_IN&pli=1" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="font-black transition-all duration-500 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:bg-clip-text hover:text-transparent hover:scale-105">Download</a></li>
-                  <li><a href="#contact" onClick={(e) => { e.preventDefault(); setMenuOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="font-black transition-all duration-500 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:bg-clip-text hover:text-transparent hover:scale-105">Contact</a></li>
+                  <li><Link href="/"  className="font-black hover:text-blue-400 transition-colors duration-200">Home</Link></li>
+                  <li><a href="#about" onClick={(e) => { e.preventDefault(); setMenuOpen(false); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }} className="font-black hover:text-blue-400 transition-colors duration-200">About</a></li>
+                  <li><a href="https://play.google.com/store/apps/details?id=com.cloud_regex.book_lane&hl=en_IN&pli=1" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="font-black hover:text-blue-400 transition-colors duration-200">Download</a></li>
+                  <li><a href="#contact" onClick={(e) => { e.preventDefault(); setMenuOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="font-black hover:text-blue-400 transition-colors duration-200">Contact</a></li>
                 </ul>
               </nav>
               <style jsx>{`
@@ -53,31 +53,20 @@ export default function Header() {
                   to { opacity: 1; }
                 }
                 .animate-fade-in {
-                  animation: fade-in 0.5s cubic-bezier(0.4,0,0.2,1);
+                  animation: fade-in 0.2s ease;
                 }
-                @keyframes drawer-bounce-top {
-                  0% {
-                    transform: translateY(-100%) scale(0.95);
+                @keyframes slide-down {
+                  from {
                     opacity: 0;
-                    filter: blur(8px) brightness(0.7) drop-shadow(0 0 16px #2196F3);
+                    transform: translateY(-30px);
                   }
-                  60% {
-                    transform: translateY(12px) scale(1.04);
+                  to {
                     opacity: 1;
-                    filter: blur(2px) brightness(1.1) drop-shadow(0 0 24px #43E97B);
-                  }
-                  80% {
-                    transform: translateY(0px) scale(0.98);
-                    filter: blur(0.5px) brightness(1) drop-shadow(0 0 8px #2196F3);
-                  }
-                  100% {
-                    transform: translateY(0) scale(1);
-                    opacity: 1;
-                    filter: blur(0) brightness(1) drop-shadow(0 0 0 #0000);
+                    transform: translateY(0);
                   }
                 }
-                .animate-drawer-bounce-top {
-                  animation: drawer-bounce-top 0.7s cubic-bezier(0.4,1.4,0.2,1);
+                .animate-slide-down {
+                  animation: slide-down 0.25s cubic-bezier(0.4,0,0.2,1);
                 }
               `}</style>
             </>

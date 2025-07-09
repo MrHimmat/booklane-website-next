@@ -51,7 +51,8 @@ export default function HeroHome() {
         </div>
 
         {/* Banner image below hero content */}
-          {/* <AnimatedBook /> */}
+        <div className="mt-10" />
+        <AnimatedBook />
       </div>
     </section>
   );
