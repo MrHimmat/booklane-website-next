@@ -1,0 +1,171 @@
+/* Animated Book Styles - Separate File */
+/* TEST: This CSS file is loading if you see any changes */
+.book-container {
+  perspective: 1000px;
+  border: 2px solid transparent !important;
+  background: linear-gradient(45deg, #2196F3, #43E97B, #2196F3) !important;
+  background-size: 200% 200% !important;
+  animation: gradientShift 3s ease-in-out infinite !important;
+  border-radius: 8px !important;
+}
+
+.book-cover {
+  background: linear-gradient(45deg, #2196F3, #43E97B, #2196F3, #FF6B6B, #4ECDC4, #45B7D1) !important;
+  background-size: 400% 400% !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  transform-style: preserve-3d !important;
+  transform: rotateY(0deg) translateZ(2px) !important;
+  animation: bookRotate 4s ease-in-out infinite, gradientShift 8s ease-in-out infinite !important;
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 100px !important; /* Debug: Ensure minimum height */
+}
+
+.book-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.book-cover:hover {
+  transform: rotateY(0deg) translateZ(2px) scale(1.05);
+  transition: transform 0.3s ease;
+  animation-play-state: paused;
+}
+
+.book-cover-inner {
+  background: linear-gradient(to bottom right, #d97706, #b45309) !important;
+  border-radius: 6px !important;
+}
+
+.book-cover-content {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.book-spine {
+  background: linear-gradient(to bottom, #2196F3, #43E97B, #FF6B6B) !important;
+  background-size: 100% 300% !important;
+  border-radius: 8px 0 0 8px !important;
+  transform-style: preserve-3d !important;
+  transform: rotateY(-90deg) translateZ(1px) !important;
+  animation: spineGradient 6s ease-in-out infinite !important;
+}
+
+.book-pages {
+  background: white !important;
+  border-radius: 8px !important;
+  transform-style: preserve-3d !important;
+  transform: rotateY(0deg) translateZ(1px) !important;
+}
+
+.page-line {
+  opacity: 0 !important;
+  animation: pageLineAppear 0.5s ease forwards !important;
+}
+
+.floating-pages {
+  transform-style: preserve-3d !important;
+  animation: floatingPages 6s ease-in-out infinite !important;
+}
+
+.page-1 {
+  transform-style: preserve-3d !important;
+  transform: rotateY(0deg) translateZ(0.5px) !important;
+  animation: page1Float 5s ease-in-out infinite !important;
+  animation-delay: 0.5s !important;
+}
+
+.page-2 {
+  transform-style: preserve-3d !important;
+  transform: rotateY(0deg) translateZ(0.3px) !important;
+  animation: page2Float 4s ease-in-out infinite !important;
+  animation-delay: 1s !important;
+}
+
+.book-shadow {
+  animation: shadowPulse 4s ease-in-out infinite !important;
+}
+
+.book-title {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+  color: white !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+.book-text {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+  color: white !important;
+}
+
+.gradient-text-lane {
+  background: linear-gradient(45deg, #2196F3, #43E97B, #2196F3) !important;
+  background-size: 200% 200% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: gradientShift 3s ease-in-out infinite !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+}
+
+@keyframes bookRotate {
+  0%, 100% { transform: rotateY(0deg) translateZ(2px); }
+  50% { transform: rotateY(15deg) translateZ(2px); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes spineGradient {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
+}
+
+@keyframes pageLineAppear {
+  0% { opacity: 0; transform: translateX(-10px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatingPages {
+  0%, 100% { transform: rotateY(0deg) rotateZ(0deg); }
+  50% { transform: rotateY(5deg) rotateZ(2deg); }
+}
+
+@keyframes page1Float {
+  0%, 100% { transform: rotateY(0deg) translateZ(0.5px) rotateZ(0deg); }
+  50% { transform: rotateY(10deg) translateZ(0.5px) rotateZ(1deg); }
+}
+
+@keyframes page2Float {
+  0%, 100% { transform: rotateY(0deg) translateZ(0.3px) rotateZ(0deg); }
+  50% { transform: rotateY(8deg) translateZ(0.3px) rotateZ(-1deg); }
+}
+
+@keyframes shadowPulse {
+  0%, 100% { 
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateX(-50%) scale(1.1);
+    opacity: 0.5;
+  }
+} 
